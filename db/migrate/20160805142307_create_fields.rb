@@ -3,7 +3,7 @@ class CreateFields < ActiveRecord::Migration
     create_table :fields do |t|
       t.references :channel, index: true, foreign_key: true
       t.string :name
-      t.string :type
+      t.string :field_type
       t.text :description
       t.boolean :is_required
 

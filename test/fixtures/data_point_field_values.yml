@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  datapoint_id: 
+  data_point_id: 
   field_id: 
   value: MyText
 
 two:
-  datapoint_id: 
+  data_point_id: 
   field_id: 
   value: MyText
