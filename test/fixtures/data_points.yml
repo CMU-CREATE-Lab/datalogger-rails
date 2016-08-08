@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  channel_id: 
+  id: 1
+  channel_id: 1
   latitude: 1.5
-  longitude: 1.5
+  longitude: 2.0
 
 two:
-  channel_id: 
-  latitude: 1.5
-  longitude: 1.5
+  id: 2
+  channel_id: 1
+  latitude: 2.0
+  longitude: 1.0

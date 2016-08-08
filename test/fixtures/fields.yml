@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  channel_id: 
-  name: MyString
-  field_type: MyString
-  description: MyText
+channel_feed_boolean:
+  id: 1
+  channel_id: 1
+  name: isOutdoors
+  field_type: boolean
+  description: Determine if data point is outdoors (optional).
   is_required: false
 
-two:
-  channel_id: 
-  name: MyString
-  field_type: MyString
-  description: MyText
-  is_required: false
+channel_feed_value:
+  id: 2
+  channel_id: 1
+  name: myValue
+  field_type: number
+  description: The value associated with the data point.
+  is_required: true

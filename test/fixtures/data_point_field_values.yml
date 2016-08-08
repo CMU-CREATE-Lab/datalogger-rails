@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  data_point_id: 
-  field_id: 
-  value: MyText
+datapoint_1_field_1:
+  data_point_id: 1
+  field_id: 1
+  value: "true"
 
-two:
-  data_point_id: 
-  field_id: 
-  value: MyText
+datapoint_1_field_2:
+  data_point_id: 1
+  field_id: 2
+  value: "1.59"
+
+datapoint_2_field_2:
+  data_point_id: 2
+  field_id: 2
+  value: "0.16"
