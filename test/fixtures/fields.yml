@@ -3,13 +3,13 @@
 one:
   channel_id: 
   name: MyString
-  type: 
+  field_type: MyString
   description: MyText
   is_required: false
 
 two:
   channel_id: 
   name: MyString
-  type: 
+  field_type: MyString
   description: MyText
   is_required: false
