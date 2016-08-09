@@ -31,4 +31,9 @@ class Field < ActiveRecord::Base
     return true
   end
 
+
+  def as_json(options={})
+    super(:only => [:name,:description,:field_type,:is_required])
+  end
+
 end

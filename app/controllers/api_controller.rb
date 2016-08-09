@@ -34,12 +34,7 @@ class ApiController < ApplicationController
           field.save!
         end
 
-        response = {
-          :channel_id => channel.id,
-          :name => channel.name,
-          :description => channel.description,
-          :fields => channel.fields.map{|f| JSON.parse(f.to_json(:only => [:name,:description,:field_type,:is_required]))}
-        }
+        response = channel.as_json
       rescue Exception => e
         # make sure we delete any records that might have been created
         channel.destroy
@@ -57,18 +52,21 @@ class ApiController < ApplicationController
     render :json => response, :layout => false
   end
 
-  # GET /api/v1/channels
-  #
-  # PARAMS: none
-  #
-  def channel_index
-  end
-
-  # GET /api/v1/channels/:channel_id
+  # GET /api/v1/channels/:channel_name
   #
   # PARAMS: none
   #
   def channel_show
+    @channel = Channel.find_by_name params["channel_name"]
+
+    if @channel.blank?
+      json = {
+        :error => "Channel name '#{params["channel_name"]}' does not exist."
+      }
+    else
+      json = @channel.as_json
+    end
+    render :json => json
   end
 
   # datapoints
@@ -81,6 +79,31 @@ class ApiController < ApplicationController
   # "values" : Hash:{ ["fieldName"(String) => "fieldValue"(String) ][,[...]] }
   #
   def data_point_create
+    data_point = DataPoint.new
+    @channel = Channel.find_by_name params["channel_name"]
+    if @channel.blank?
+      json = {
+        :error => "Channel name '#{params["channel_name"]}' does not exist."
+      }
+    else
+      data_point.channel = @channel
+      data_point.latitude = params["latitude"] unless params["latitude"].blank?
+      data_point.longitude = params["longitude"] unless params["longitude"].blank?
+      data_point.values = params["values"] unless params["values"].blank?
+
+      begin
+        data_point.save!
+        response = data_point.as_json
+      rescue Exception => e
+          # make sure we delete any records that might have been created
+          data_point.destroy
+          response = {
+            :error => e.message
+          }
+      end
+    end
+
+    render :json => response
   end
 
   # GET /api/v1/channels/:channel_id/data_points
@@ -88,6 +111,16 @@ class ApiController < ApplicationController
   # PARAMS: none
   #
   def data_point_index
+    @channel = Channel.find_by_name params["channel_name"]
+
+    if @channel.blank?
+      json = {
+        :error => "Channel name '#{params["channel_name"]}' does not exist."
+      }
+    else
+      json = @channel.data_points.map(&:as_json)
+    end
+    render :json => json
   end
 
 end

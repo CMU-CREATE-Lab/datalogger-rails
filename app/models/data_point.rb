@@ -23,6 +23,9 @@ class DataPoint < ActiveRecord::Base
 
 
   # class methods
+  def as_json(options={})
+    super(:only => [:latitude,:longitude,:created_at], :methods => :values)
+  end
   #
 
   private
