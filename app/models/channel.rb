@@ -8,7 +8,7 @@ class Channel < ActiveRecord::Base
 
 
   def as_json(options={})
-    super(:only => [:name, :description], :include => :fields)
+    super(:only => [:name, :description, :created_at], :include => { :fields => { :only => [:name,:description,:field_type,:is_required] }} )
   end
 
 end

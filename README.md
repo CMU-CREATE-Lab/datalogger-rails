@@ -55,6 +55,8 @@ contents of channel.json:
 }
 ```
 
+Available `field_type` for **Fields** are: `"number", "boolean", "string", "file"`
+
 ### Add new Data Point
 
     curl -X POST -H "Content-Type:application/json" "http://localhost:3000/api/v1/channels/MyChannelName/data_points" -d @data_point.json
